@@ -29,10 +29,12 @@ class ViewRegisteredEvent extends React.Component {
         return (
             <div>
               <Header />
+              <div className='ui segment' style={{ marginTop: '0px', paddingLeft: '40px' }} >
+                <b>
+                   <h3>Registered Events</h3>
+                </b>
+              </div>
               <div className='container'>
-                <div>
-                  <ButtonMenu />
-                </div>
                 <div className='ui items' style={{float: 'left', width: '60%'}}>
                   {this.state.registeredEvents.map(event => {
                     return (

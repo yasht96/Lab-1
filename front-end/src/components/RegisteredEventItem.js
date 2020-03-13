@@ -1,11 +1,12 @@
 import React from 'react';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
 import alt from '../images/alt.png';
 
 class RegisteredEventItem extends React.Component {
     constructor() {
         super();
-        this.state = {event_name: '', event_description: '', event_timing: '', event_location};
+        this.state = {event_name: '', event_description: '', event_timing: '', event_location: ''};
     }
     componentDidMount() {
         const id = this.props.event.event_id;
@@ -30,20 +31,20 @@ class RegisteredEventItem extends React.Component {
               <img src={alt} />
             </div>
             <div className='content' >
-              <a className='header'><h4>{this.props.event.event_name}</h4></a>
+              <a className='header'><h4>{this.state.event_name}</h4></a>
               <div className='meta'>
                 <span className='cinema'>
-                  {props.event.event_from_date} - {props.event.event_to_date}
+                  {this.state.event_description}
                   </span>
               </div>
-              <div className='description'>
+              <div className='description'> 
                 <div>
-                  Location: {props.event.event_location}
+                  Location: {this.state.event_location}
                 </div>
               </div>
               <div className='extra'>
                 
-              </div>
+              </div>        
             </div>
           </div>
           );

@@ -25,10 +25,10 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/:id', (req, res) => {
-    const {company_name, location, description, contact} = req.body;
+    const {company_name, company_location, company_description, company_contact} = req.body;
     const id = req.params.id;
     try {
-        pool.query(`UPDATE company_information set company_name='${company_name}', company_location='${location}', company_description='${description}', company_contact='${contact}' WHERE company_id=${id}`, (err, result) => {
+        pool.query(`UPDATE company_information set company_name='${company_name}', company_location='${company_location}', company_description='${company_description}', company_contact='${company_contact}' WHERE company_id=${id}`, (err, result) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send('server error');
