@@ -112,7 +112,13 @@ class Jobs extends React.Component {
                 {this.state.company_name}
               </div>
               <div>
-                {this.state.selectedJob.job_category}
+                Job category: {this.state.selectedJob.job_category}
+              </div>
+              <div>
+                Description: {this.state.selectedJob.job_description}
+              </div>
+              <div>
+                Job Requirements: {this.state.selectedJob.job_requirements}
               </div>
               <div>
               <input className={this.useStyles.input} id="outlined-button-file" multiple type="file" onChange={this.onSelectFile} />
