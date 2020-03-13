@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Header';
+import CompanyHeader from '../CompanyHeader';
 import axios from 'axios';
 import EventItemEmployer from './EventItemEmployer';
 
@@ -29,7 +29,7 @@ class ViewEventEmployer extends React.Component {
     return (
       <div>
         <div>
-          <Header />
+          <CompanyHeader />
         </div>
         
           {this.state.posts.map(post => {

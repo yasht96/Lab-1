@@ -27,7 +27,8 @@ const App = () => {
         <Route path='/student/register' component={Register} />
         <Route path='/student/event' component={EventPageStudent} />
         <Route path='/student/registered/event' component={ViewRegisteredEvent} />
-        <Route path='/company/event' component={EventPost} />
+        <Route path='/companyprofile' component={CompanyProfile} />
+        <Route path='/companyeventpost' component={EventPost} />
         <Route path='/companyjobpost' component={JobPost} />
         <Route path='/company/job/view' component={ViewJobs} />
         <Route path='/company/job/applicants' component={JobApplicants} />
@@ -38,7 +39,6 @@ const App = () => {
         <Route path='/student/profile' component={ViewStudentProfile} />
         <Route path='/event' component={Event} />
         <Route path='/students' component={Students} />
-        <Route path='/company' component={CompanyProfile} />
         <Route path='/my' component={StudentProfile} />
         <Route path='/jobs' component={Jobs} />
       </div>

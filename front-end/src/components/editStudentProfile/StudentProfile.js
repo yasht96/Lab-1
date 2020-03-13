@@ -6,6 +6,7 @@ import Education from './Education';
 import Experience from './Experience';
 import AddForm from './AddForm';
 import Skills from './Skills';
+import AddExperienceForm from './AddExperienceForm'
 import {Form, TextArea} from 'semantic-ui-react';
 
 
@@ -18,6 +19,7 @@ class StudentProfile extends React.Component {
       experienceDetails: [],
       showAddForm: false,
       showTextFrom: false,
+      showAddExperienceForm: false,
       tempCareerObjective: ''
     };
   }
@@ -58,6 +60,18 @@ class StudentProfile extends React.Component {
     console.log(list);
     this.setState({educationDetails: list});
     this.setState({showAddForm: !this.state.showAddForm});
+  }
+
+  onAddExperienceClick = () => {
+    this.setState({showAddExperienceForm: !this.state.showAddExperienceForm});
+  }
+
+  onAddExperience = (experience) => {
+    console.log('new', experience);
+    const list = [...this.state.experienceDetails, experience];
+    console.log(list);
+    this.setState({experienceDetails: list});
+    this.setState({showAddExperienceForm: !this.state.showAddExperienceForm});
   }
 
   onAddJourney = () => {
@@ -103,6 +117,17 @@ class StudentProfile extends React.Component {
     this.setState({educationDetails: data});
   }
 
+  onUpdateExperience = (experience) => {
+    console.log(experience)
+    const data = this.state.experienceDetails.map((item) => {
+      if(item.experience_id === experience.experience_id) {
+        return experience
+      }
+      return item;
+    })
+    this.setState({experienceDetails: data});
+  }
+  
   renderTextForm = () => {
       return (
           <div>

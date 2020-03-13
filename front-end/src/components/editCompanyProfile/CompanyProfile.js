@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Header from '../Header';
+import CompanyHeader from '../CompanyHeader';
 import CompanyBio from './CompanyBio';
 import {Form, TextArea} from 'semantic-ui-react';
 
@@ -76,7 +76,7 @@ class CompanyProfile extends React.Component {
         return (
             <div>
                 <div>
-                    <Header />
+                    <CompanyHeader />
                 </div>
                 <div style={{float: 'left', width: '25%', marginTop: '20px', marginLeft: '10%'}}>
                     <div style={{marginBottom: '20px'}}>

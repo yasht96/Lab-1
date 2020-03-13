@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router';
+import CompanyHeader from '../CompanyHeader';
 
 class EventPost extends React.Component {
   constructor() {
@@ -51,6 +52,7 @@ class EventPost extends React.Component {
       <div>
         <div>
           {this.state.redirect}
+          <CompanyHeader />
           <div style={{ float: 'left', width: '40%', marginTop: '20px' }}>
             <p>Handshake</p>
           </div>

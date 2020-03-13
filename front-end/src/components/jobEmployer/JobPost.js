@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import CompanyHeader from '../CompanyHeader';
 import { Redirect } from 'react-router';
 
 class JobPost extends React.Component {
@@ -55,6 +56,7 @@ class JobPost extends React.Component {
       <div>
         <div>
           {this.state.redirect}
+          <CompanyHeader />
           <div style={{ float: 'left', width: '40%', marginTop: '20px' }}>
             <p>Handshake</p>
           </div>

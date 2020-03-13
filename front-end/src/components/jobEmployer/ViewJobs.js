@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../Header';
+import CompanyHeader from '../CompanyHeader';
 import axios from 'axios';
 import JobItemEmployer from './JobItemEmployer';
 
@@ -29,7 +29,7 @@ class ViewJobs extends React.Component {
     return (
       <div>
         <div>
-          <Header />
+          <CompanyHeader />
         </div>
         <div className='ui segment' style={{ marginTop: '0px', paddingLeft: '40px', marginBottom: '20px' }} >
           <b>

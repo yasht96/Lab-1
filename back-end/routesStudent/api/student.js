@@ -242,11 +242,11 @@ router.post('/experience/:id', (req, res) => {
   const id = req.params.id;
   const {
     company_name,
-    title,
+    designation,
     company_location,
-    start_date,
-    end_date,
-    work_summary
+    starting_date,
+    ending_date,
+    workSummary
   } = req.body;
   try {
     pool.query(`SELECT * from student_experience_details WHERE student_id=${id}`, (err, result) => {
@@ -256,7 +256,7 @@ router.post('/experience/:id', (req, res) => {
       }
 
       if(result.length === 0) {
-        pool.query(`INSERT into student_experience_details (company_name, designation, work_summary, company_location, starting_date, ending_date, student_id) VALUES ('${company_name}', '${title}', '${work_summary}', '${company_location}', '${start_date}', '${end_date}', ${id})`, (err, result) => {
+        pool.query(`INSERT into student_experience_details (company_name, designation, work_summary, company_location, starting_date, ending_date, student_id) VALUES ('${company_name}', '${designation}', '${workSummary}', '${company_location}', '${starting_date}', '${ending_date}', ${id})`, (err, result) => {
           if(err) {
             console.log(err);
             res.status(500).send('server error!');
@@ -273,26 +273,97 @@ router.post('/experience/:id', (req, res) => {
   }
 });
 
+// router.post('/experience/:id', (req, res) => {
+//   console.log('hi');
+//   const id = req.params.id;
+//   const {
+//     company_name,
+//     title,
+//     company_location,
+//     start_date,
+//     end_date,
+//     work_summary
+//   } = req.body;
+//   try {
+//     pool.query(`SELECT * from student_experience_details WHERE student_id=${id}`, (err, result) => {
+//       if(err) {
+//         console.log(err); 
+//         res.status(500).send('server error!');
+//       }
+
+//       if(result.length === 0) {
+//         pool.query(`INSERT into student_experience_details (company_name, designation, work_summary, company_location, starting_date, ending_date, student_id) VALUES ('${company_name}', '${title}', '${work_summary}', '${company_location}', '${start_date}', '${end_date}', ${id})`, (err, result) => {
+//           if(err) {
+//             console.log(err);
+//             res.status(500).send('server error!');
+//           }
+
+//           console.log(result);
+//           res.status(200).json({result});
+//         })
+//       }
+//     })
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).send('server error!');
+//   }
+// });
+
+// router.put('/experience/:id', (req, res) => {
+//   const id = req.params.id;
+//   const {
+//     company_name,
+//     title,
+//     company_location,
+//     start_date,
+//     end_date,
+//     work_summary,
+//     experience_id,
+//   } = req.body;
+//   try {
+//     pool.query(`SELECT * from student_experience_details WHERE student_id=${id}`, (err, result) => {
+//       if(err) {
+//         console.log(err);
+//         res.status(500).send('server error!');
+//       }
+
+//       if(result.length !== 0) {
+//         pool.query(`UPDATE student_experience_details set company_name = '${company_name}', designation = '${title}', work_summary = '${work_summary}', company_location ='${company_location}', starting_date = '${start_date}', ending_date = '${end_date}' WHERE (student_id = ${id} AND experience_id = ${experience_id})`, (err, result) => {
+//           if(err) {
+//             console.log(err);
+//             res.status(500).send('server error!');
+//           }
+
+//           console.log(result);
+//           res.status(200).json({result});
+//         })
+//       }
+//     })
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).send('server error!');
+//   }
+// });
+
 router.put('/experience/:id', (req, res) => {
   const id = req.params.id;
   const {
     company_name,
-    title,
+    designation,
     company_location,
-    start_date,
-    end_date,
-    work_summary,
-    experience_id,
+    starting_date,
+    ending_date,
+    workSummary
   } = req.body;
   try {
-    pool.query(`SELECT * from student_experience_details WHERE student_id=${id}`, (err, result) => {
-      if(err) {
-        console.log(err);
-        res.status(500).send('server error!');
-      }
+    // pool.query(`SELECT * from student_experience_details WHERE student_id=${id}`, (err, result) => {
+    //   if(err) {
+    //     console.log(err);
+    //     res.status(500).send('server error!');
+    //   }
 
-      if(result.length !== 0) {
-        pool.query(`UPDATE student_experience_details set company_name = '${company_name}', designation = '${title}', work_summary = '${work_summary}', company_location ='${company_location}', starting_date = '${start_date}', ending_date = '${end_date}' WHERE (student_id = ${id} AND experience_id = ${experience_id})`, (err, result) => {
+      // if(result.length !== 0) {
+        pool.query(`UPDATE student_experience_details set company_name = '${company_name}', designation = '${designation}', work_summary = '${workSummary}', company_location ='${company_location}', starting_date = '${starting_date}', ending_date = '${ending_date}' WHERE experience_id = ${id}`, (err, result) => {
           if(err) {
             console.log(err);
             res.status(500).send('server error!');
@@ -301,8 +372,8 @@ router.put('/experience/:id', (req, res) => {
           console.log(result);
           res.status(200).json({result});
         })
-      }
-    })
+      // }
+    // })
   } catch (err) {
     console.log(err);
     res.status(500).send('server error!');
