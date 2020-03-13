@@ -11,7 +11,7 @@ import JobItemStudent from './JobItemStudent';
 class Jobs extends React.Component {
   constructor() {
     super();
-    this.state = { jobs: [], selectedJob: '', company_name: '', selectedFile: null};
+    this.state = { jobs: [], jobsSearch: [], selectedJob: '', company_name: '', selectedFile: null};
   }
 
   useStyles = makeStyles(theme => ({
@@ -37,6 +37,7 @@ class Jobs extends React.Component {
             console.log(this.state.jobs);
             this.setState({selectedJob: res.data.result[0]})
           });
+          this.setState({jobsSearch: res.data.result })
         }
       })
       .catch(err => {
@@ -81,16 +82,20 @@ class Jobs extends React.Component {
     this.setState({selectedFile: e.target.files[0]})
   }
 
+  onSearch = (list) => {
+    this.setState({jobsSearch: list});
+  }
+
   render() {
     return (
       <div>
         <Header />
         <JobMenu />
         <div>
-          <JobSearchBar />
+          <JobSearchBar jobSearch={this.onSearch} jobList={this.state.jobs}/>
         </div>
         <div style={{marginTop: '20px', marginLeft: '20px', width: '50%', float: 'left'}} >
-          {this.state.jobs.map(job => {
+          {this.state.jobsSearch.map(job => {
             return (
               <div className='ui raised segment' style={{ marginLeft: '20px', width: '100%' }} >
                 <JobItemStudent key={job} job={job} onSelectJob={this.onSelectJob} />

@@ -9,7 +9,8 @@ class Event extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      upcomingEvents: []
+      upcomingEvents: [],
+      searchEvents: []
     };
   }
 
@@ -19,11 +20,16 @@ class Event extends React.Component {
       .then(res => {
         if (res.status === 200) {
           this.setState({ upcomingEvents: res.data.result });
+          this.setState({searchEvents: res.data.result});
         }
       })
       .catch(err => {
         console.log(err);
       });
+  }
+
+  onSearch = (list) => {
+    this.setState({searchEvents: list});
   }
 
   render() {
@@ -35,7 +41,7 @@ class Event extends React.Component {
             <ButtonMenu />
           </div>
           <div className='ui items' style={{float: 'left', width: '60%'}}>
-            {this.state.upcomingEvents.map(event => {
+            {this.state.searchEvents.map(event => {
               return (
                 <div
                   className='ui raised segment '
@@ -60,7 +66,7 @@ class Event extends React.Component {
               marginRight: '40px'
             }}
           >
-            <EventSideList />
+            <EventSideList eventList={this.state.upcomingEvents} onEventSearch={this.onSearch} />
           </div>
         </div>
       </div>

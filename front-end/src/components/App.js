@@ -28,7 +28,7 @@ const App = () => {
         <Route path='/student/event' component={EventPageStudent} />
         <Route path='/student/registered/event' component={ViewRegisteredEvent} />
         <Route path='/company/event' component={EventPost} />
-        <Route path='/company/job/post' component={JobPost} />
+        <Route path='/companyjobpost' component={JobPost} />
         <Route path='/company/job/view' component={ViewJobs} />
         <Route path='/company/job/applicants' component={JobApplicants} />
         <Route path='/company/job/student/application' component={ViewStudentApplication} />
