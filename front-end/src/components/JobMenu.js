@@ -1,4 +1,5 @@
-import React from 'react'; 
+import React from 'react';
+import {Link} from 'react-router-dom'; 
 
 const JobMenu = () => {
     return (
@@ -8,10 +9,8 @@ const JobMenu = () => {
                 <h3>Job Search</h3>
             </div>
                 <div className="right menu" style={{marginRight: '40px'}} >
-                    <a className="item">Job Search</a>
-                    <a className="item">Applications</a>
-                    <a className="item">Employers</a>
-                    <a className="item">On-Campus Interviews</a>
+                    <Link to='/applications' className="item">Applications</Link>
+                    <Link className="item">On-Campus Interviews</Link>
                 </div>
             </div>
         </div>
