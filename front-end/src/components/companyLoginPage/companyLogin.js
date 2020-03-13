@@ -2,12 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import CompanyHeader from '../CompanyHeader';
-import "../../CSS/styles.css"
-import { Link } from "react-router-dom";
+import '../../CSS/styles.css';
+import { Link } from 'react-router-dom';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { company_email_id: '', company_password: '', redirect: '', error: undefined };
+    this.state = {
+      company_email_id: '',
+      company_password: '',
+      redirect: '',
+      error: undefined
+    };
   }
 
   onChangeHandler = e => {
@@ -17,20 +22,21 @@ class Login extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:3000/api/employer/login', {
-        company_email_id: this.state.company_email_id,
-        company_password: this.state.company_password
-      }, {headers: {'Content-Type': 'application/json'}})
+      .post(
+        'http://18.206.154.118:8080/api/employer/login',
+        {
+          company_email_id: this.state.company_email_id,
+          company_password: this.state.company_password
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
       .then(res => {
         if (res.status === 200) {
-       
-          this.setState({ redirect: <Redirect to='/company/viewjob'/> });
-          
+          this.setState({ redirect: <Redirect to='/company/viewjob' /> });
         } else {
-            console.log(res);
-          this.setState({ error : "Invalid Credentials" });
+          console.log(res);
+          this.setState({ error: 'Invalid Credentials' });
         }
-        
       })
       .catch(err => {
         console.log(err);
@@ -40,53 +46,62 @@ class Login extends React.Component {
     return (
       <div>
         {this.state.redirect}
-        <CompanyHeader/>
-        <div class="display_inline" style={{height: '-webkit-fill-available'}}>
-        <div class="col-md-6 coloring" style={{background:'#1569e0' }}>
-        <div style={{marginTop:'5%'}}>
-          <h1>Get the job done</h1>
-          <p><strong>Employers</strong></p>
-          <p>Hire the next generation of talent.</p>
-          <p><strong>Career Centers</strong></p>
-          <p>Bring the best jobs to your students.</p>
-        </div>
-        </div>
-        <div class="col-md-6"style={{  margin: 'auto'}}>
-          <h1>Employer Sign In</h1>
-          <form className='ui form' onSubmit={this.onSubmitHandler}>
-            <div className='field'>
-              <label>Email</label>
-              <input
-                type='text'
-                name='company_email_id'
-                value={this.state.company_email_id}
-                placeholder='Email'
-                onChange={this.onChangeHandler}
-                required
-              />
+        <CompanyHeader />
+        <div
+          class='display_inline'
+          style={{ height: '-webkit-fill-available' }}
+        >
+          <div class='col-md-6 coloring' style={{ background: '#1569e0' }}>
+            <div style={{ marginTop: '5%' }}>
+              <h1>Get the job done</h1>
+              <p>
+                <strong>Employers</strong>
+              </p>
+              <p>Hire the next generation of talent.</p>
+              <p>
+                <strong>Career Centers</strong>
+              </p>
+              <p>Bring the best jobs to your students.</p>
             </div>
-            <div className='field'>
-              <label>Password</label>
-              <input
-                type='password'
-                name='company_password'
-                value={this.state.company_password}
-                placeholder='Password'
-                onChange={this.onChangeHandler}
-                required
-              />
-            </div>
-            <div style={{marginBottom: '10px'}}>    
-              {this.state.error && <div className='ui red message'>{this.state.error}</div>}
-            </div>
-            <button className='ui button' type='submit'>
-              Sign In
-            </button>
-          </form>
-          <Link to="/company/register" className="item">
-         Not a user Register now
-        </Link>
-        </div>
+          </div>
+          <div class='col-md-6' style={{ margin: 'auto' }}>
+            <h1>Employer Sign In</h1>
+            <form className='ui form' onSubmit={this.onSubmitHandler}>
+              <div className='field'>
+                <label>Email</label>
+                <input
+                  type='text'
+                  name='company_email_id'
+                  value={this.state.company_email_id}
+                  placeholder='Email'
+                  onChange={this.onChangeHandler}
+                  required
+                />
+              </div>
+              <div className='field'>
+                <label>Password</label>
+                <input
+                  type='password'
+                  name='company_password'
+                  value={this.state.company_password}
+                  placeholder='Password'
+                  onChange={this.onChangeHandler}
+                  required
+                />
+              </div>
+              <div style={{ marginBottom: '10px' }}>
+                {this.state.error && (
+                  <div className='ui red message'>{this.state.error}</div>
+                )}
+              </div>
+              <button className='ui button' type='submit'>
+                Sign In
+              </button>
+            </form>
+            <Link to='/company/register' className='item'>
+              Not a user Register now
+            </Link>
+          </div>
         </div>
       </div>
     );

@@ -5,7 +5,14 @@ import { Redirect } from 'react-router';
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: '', password: '', name: '', college_name: '', redirect: '', error: undefined };
+    this.state = {
+      email: '',
+      password: '',
+      name: '',
+      college_name: '',
+      redirect: '',
+      error: undefined
+    };
   }
 
   onChangeHandler = e => {
@@ -15,18 +22,21 @@ class Register extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:3000/api/student/register', {
-        email: this.state.email,
-        password: this.state.password,
-        name: this.state.name,
-        college_name: this.state.college_name
-      }, {headers: {'Content-Type': 'application/json'}})
+      .post(
+        'http://18.206.154.118:8080/api/student/register',
+        {
+          email: this.state.email,
+          password: this.state.password,
+          name: this.state.name,
+          college_name: this.state.college_name
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
       .then(res => {
         if (res.status === 200) {
           this.setState({ redirect: <Redirect to='/students' /> });
-          
         } else {
-            console.log(res);
+          console.log(res);
           this.setState({ error: 'Invalid Credentials' });
         }
       })
@@ -43,7 +53,7 @@ class Register extends React.Component {
         </div>
         <div style={{ float: 'left', width: '40%', marginTop: '20px' }}>
           <form className='ui form' onSubmit={this.onSubmitHandler}>
-          <div className='field'>
+            <div className='field'>
               <label>College Name</label>
               <input
                 type='text'
@@ -87,8 +97,10 @@ class Register extends React.Component {
                 required
               />
             </div>
-            <div style={{marginBottom: '10px'}}>    
-              {this.state.error && <div className='ui red message'>{this.state.error}</div>}
+            <div style={{ marginBottom: '10px' }}>
+              {this.state.error && (
+                <div className='ui red message'>{this.state.error}</div>
+              )}
             </div>
             <button className='ui button' type='submit'>
               Sign Up

@@ -15,16 +15,19 @@ class Login extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:3000/api/student/login', {
-        email: this.state.email,
-        password: this.state.password
-      }, {headers: {'Content-Type': 'application/json'}})
+      .post(
+        'http://18.206.154.118:8080/api/student/login',
+        {
+          email: this.state.email,
+          password: this.state.password
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
       .then(res => {
         if (res.status === 200) {
           this.setState({ redirect: <Redirect to='/students' /> });
-          
         } else {
-            console.log(res);
+          console.log(res);
           this.setState({ error: 'Invalid Credentials' });
         }
       })
@@ -63,8 +66,10 @@ class Login extends React.Component {
                 required
               />
             </div>
-            <div style={{marginBottom: '10px'}}>    
-              {this.state.error && <div className='ui red message'>{this.state.error}</div>}
+            <div style={{ marginBottom: '10px' }}>
+              {this.state.error && (
+                <div className='ui red message'>{this.state.error}</div>
+              )}
             </div>
             <button className='ui button' type='submit'>
               Sign In

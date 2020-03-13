@@ -28,7 +28,7 @@ class JobPost extends React.Component {
     const id = 2;
     axios
       .post(
-        `http://localhost:3000/api/job/${id}`,
+        `http://18.206.154.118:8080/api/job/${id}`,
         {
           job_title: this.state.job_title,
           job_posting_date: this.state.job_posting_date,

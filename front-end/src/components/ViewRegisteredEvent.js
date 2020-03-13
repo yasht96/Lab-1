@@ -6,15 +6,15 @@ import RegisteredEventItem from './RegisteredEventItem';
 import EventSideList from './EventSideList';
 
 class ViewRegisteredEvent extends React.Component {
-    constructor() {
-        super()
-        this.state = {registeredEvents: []}
-    }
+  constructor() {
+    super();
+    this.state = { registeredEvents: [] };
+  }
 
-    componentDidMount() {
-        const id = 16;
-        axios
-      .get(`http://localhost:3000/api/event/registered/student/${id}`)
+  componentDidMount() {
+    const id = 16;
+    axios
+      .get(`http://18.206.154.118:8080/api/event/registered/student/${id}`)
       .then(res => {
         if (res.status === 200) {
           this.setState({ registeredEvents: res.data.result });
@@ -23,50 +23,53 @@ class ViewRegisteredEvent extends React.Component {
       .catch(err => {
         console.log(err);
       });
-    }
+  }
 
-    render() {
-        return (
-            <div>
-              <Header />
-              <div className='ui segment' style={{ marginTop: '0px', paddingLeft: '40px' }} >
-                <b>
-                   <h3>Registered Events</h3>
-                </b>
-              </div>
-              <div className='container'>
-                <div className='ui items' style={{float: 'left', width: '60%'}}>
-                  {this.state.registeredEvents.map(event => {
-                    return (
-                      <div
-                        className='ui raised segment '
-                        style={{
-                          marginTop: '40px',
-                          marginLeft: '40px',
-                          marginBottom: '20px',
-                          marginRight: '20px',
-                          paddingTop: '10px'
-                        }}
-                      >
-                        <RegisteredEventItem key={event.event_id} event={event} />
-                      </div>
-                    );
-                  })}
-                </div>
+  render() {
+    return (
+      <div>
+        <Header />
+        <div
+          className='ui segment'
+          style={{ marginTop: '0px', paddingLeft: '40px' }}
+        >
+          <b>
+            <h3>Registered Events</h3>
+          </b>
+        </div>
+        <div className='container'>
+          <div className='ui items' style={{ float: 'left', width: '60%' }}>
+            {this.state.registeredEvents.map(event => {
+              return (
                 <div
+                  className='ui raised segment '
                   style={{
-                    float: 'left',
-                    marginTop: '60px',
-                    marginLeft: '30px',
-                    marginRight: '40px'
+                    marginTop: '40px',
+                    marginLeft: '40px',
+                    marginBottom: '20px',
+                    marginRight: '20px',
+                    paddingTop: '10px'
                   }}
                 >
-                  <EventSideList />
+                  <RegisteredEventItem key={event.event_id} event={event} />
                 </div>
-              </div>
-            </div>
-          );
-    }
+              );
+            })}
+          </div>
+          <div
+            style={{
+              float: 'left',
+              marginTop: '60px',
+              marginLeft: '30px',
+              marginRight: '40px'
+            }}
+          >
+            <EventSideList />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ViewRegisteredEvent;

@@ -12,7 +12,7 @@ class ViewEventEmployer extends React.Component {
   componentDidMount() {
     const id = 2;
     axios
-      .get(`http://localhost:3000/api/event/company/${id}`)
+      .get(`http://18.206.154.118:8080/api/event/company/${id}`)
       .then(res => {
         if (res.status === 200) {
           this.setState({ posts: res.data.result }, () => {
@@ -31,14 +31,17 @@ class ViewEventEmployer extends React.Component {
         <div>
           <CompanyHeader />
         </div>
-        
-          {this.state.posts.map(post => {
-            return (
-            <div className='ui raised segment' style={{marginLeft: '20px', width: '70%'}} >
-                <EventItemEmployer key={post.event_id} event={post} />
-              </div>
-            );
-          })}   
+
+        {this.state.posts.map(post => {
+          return (
+            <div
+              className='ui raised segment'
+              style={{ marginLeft: '20px', width: '70%' }}
+            >
+              <EventItemEmployer key={post.event_id} event={post} />
+            </div>
+          );
+        })}
       </div>
     );
   }

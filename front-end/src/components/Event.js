@@ -16,11 +16,11 @@ class Event extends React.Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:3000/api/event`)
+      .get(`http://18.206.154.118:8080/api/event`)
       .then(res => {
         if (res.status === 200) {
           this.setState({ upcomingEvents: res.data.result });
-          this.setState({searchEvents: res.data.result});
+          this.setState({ searchEvents: res.data.result });
         }
       })
       .catch(err => {
@@ -28,9 +28,9 @@ class Event extends React.Component {
       });
   }
 
-  onSearch = (list) => {
-    this.setState({searchEvents: list});
-  }
+  onSearch = list => {
+    this.setState({ searchEvents: list });
+  };
 
   render() {
     return (
@@ -40,7 +40,7 @@ class Event extends React.Component {
           <div>
             <ButtonMenu />
           </div>
-          <div className='ui items' style={{float: 'left', width: '60%'}}>
+          <div className='ui items' style={{ float: 'left', width: '60%' }}>
             {this.state.searchEvents.map(event => {
               return (
                 <div
@@ -66,7 +66,10 @@ class Event extends React.Component {
               marginRight: '40px'
             }}
           >
-            <EventSideList eventList={this.state.upcomingEvents} onEventSearch={this.onSearch} />
+            <EventSideList
+              eventList={this.state.upcomingEvents}
+              onEventSearch={this.onSearch}
+            />
           </div>
         </div>
       </div>

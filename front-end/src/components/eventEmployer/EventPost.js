@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router';
+import { Redirect } from 'react-router';
 import CompanyHeader from '../CompanyHeader';
 
 class EventPost extends React.Component {
@@ -26,17 +26,21 @@ class EventPost extends React.Component {
   onSubmitHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:3000/api/event', {
-        event_name: this.state.event_name,
-        event_description: this.state.event_description,
-        event_timing: this.state.event_timing,
-        event_from_date: this.state.event_from_date,
-        event_to_date: this.state.event_to_date,
-        event_location: this.state.event_location,
-        event_eligibility_criteria: this.state.event_eligibility_criteria,
-        event_major: this.state.event_major,
-        company_id: 2
-      }, {headers: {'Content-Type': 'application/json'}})
+      .post(
+        'http://18.206.154.118:8080/api/event',
+        {
+          event_name: this.state.event_name,
+          event_description: this.state.event_description,
+          event_timing: this.state.event_timing,
+          event_from_date: this.state.event_from_date,
+          event_to_date: this.state.event_to_date,
+          event_location: this.state.event_location,
+          event_eligibility_criteria: this.state.event_eligibility_criteria,
+          event_major: this.state.event_major,
+          company_id: 2
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
       .then(res => {
         if (res.status === 200) {
           this.setState({ redirect: <Redirect to='/company/post' /> });
@@ -132,7 +136,6 @@ class EventPost extends React.Component {
                   value={this.state.event_eligibility_criteria}
                   placeholder='Eligibility'
                   onChange={this.onChangeHandler}
-                  
                 />
               </div>
               <div className='field'>
@@ -143,7 +146,6 @@ class EventPost extends React.Component {
                   value={this.state.event_major}
                   placeholder='Event Major'
                   onChange={this.onChangeHandler}
-                  
                 />
               </div>
               <div style={{ marginBottom: '10px' }}>
