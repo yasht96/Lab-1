@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from '../Header';
+import CompanyHeader from '../CompanyHeader';
 import {Button} from 'semantic-ui-react';
+import axios from 'axios';
 
 
 class ViewStudentApplication extends React.Component {
@@ -12,13 +13,15 @@ class ViewStudentApplication extends React.Component {
     componentDidMount() {
 
     }
-
+    onAccept = () => {
+        axios.post(``)
+    }
     render() {
         
         return (
             <div>
                 <div>
-                    <Header />
+                    <CompanyHeader />
                 </div>
                 <div style={{width: '50%', float: 'left', marginLeft: '20px', marginTop: '20px'}}>
                 <iframe src='https://test-handshake.s3.amazonaws.com/resume_17' height='700' width='100%'></iframe>
