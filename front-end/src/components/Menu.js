@@ -15,7 +15,7 @@ const Menu = () => {
                 <div className="right menu">
                     <Link to='/jobs' className="item">Jobs</Link>
                     <Link to='/event' className="item">Events</Link>
-                    <Link className="item">Q&A</Link>
+                    <Link to='/student/registered/event' className="item">Registered Events</Link>
                     <Link to='/students' className="item">Students</Link>
                     <Link className="item">Messages</Link>
                     <a className="item">Career Center</ a>
